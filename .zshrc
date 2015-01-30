@@ -16,7 +16,7 @@ export ADMIN_SCRIPTS="/home/engshare/admin/scripts"
 
 alias gt='go test -cpu=2 -parallel=10'
 
-if [[ -z "$ADMIN_SCRIPTS" ]]; then
+if [[ -d "$ADMIN_SCRIPTS" ]]; then
   alias gt='parsebox go test'
   source "$ADMIN_SCRIPTS/master.zshrc"
 fi
@@ -37,9 +37,12 @@ path[1,0]=(
   /sbin
   $GOPATH/bin
 )
-export GOROOT=`go env GOROOT`
+command -v go > /dev/null 2>&1
+if [[ $? -eq 0 ]]; then
+  export GOROOT=`go env GOROOT`
+fi
 export PATH="$PATH:$GOROOT/bin"
-if [[ -z "$ADMIN_SCRIPTS" ]]; then
+if [[ -d "$ADMIN_SCRIPTS" ]]; then
 
   path[1,0]=(
     /home/engshare/admin/scripts
