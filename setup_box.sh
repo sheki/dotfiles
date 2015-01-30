@@ -1,3 +1,5 @@
 #!/bin/bash -e
 ln -sf $(pwd)/.vimrc "$HOME/.vimrc"
-echo "Do not forget to run vim fugitive setup"
+vim -i NONE -c VundleClean -c quitall
+vim -i NONE -c VundleUpdate -c quitall
+
