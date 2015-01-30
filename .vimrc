@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -16,20 +15,15 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/summerfruit256.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'"
 Plugin 'tomasr/molokai'
-Bundle 'zenorocha/dracula-theme'
-
+Plugin 'zenorocha/dracula-theme'
+Plugin 'scrooloose/syntastic'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 map <F1> <Esc>
 set cc=80
 set t_Co=256
-"set guifont=Anonymous\ Pro:h14
-set guifont=Source\ Code\ Pro:h14
 set nu
 filetype plugin on
 filetype indent on
@@ -37,7 +31,6 @@ set autoread
 set cmdheight=2
 let g:hybrid_use_iTerm_colors = 1
 "colorscheme solarized 
-colorscheme summerfruit256
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -46,6 +39,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " let g:UltiSnipsEditSplit="vertical"
 " " All of your Plugins must be added before the following line
 
+colorscheme solarized 
 set background=light
 set encoding=utf8
 set nobackup
@@ -106,3 +100,18 @@ au BufReadPost *
 augroup END
 ab mga Mattieuga
 autocmd BufWritePre *.md :%s/\s\+$//e
+au BufNewFile,BufRead *.tw set filetype=python
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:syntastic_mode_map = {
+  \ "mode": "active",
+  \ "active_filetypes": ["ruby", "python"],
+  \ "passive_filetypes": ["puppet"] }
