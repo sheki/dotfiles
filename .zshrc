@@ -21,7 +21,6 @@ if [[ -z "$ADMIN_SCRIPTS" ]]; then
   source "$ADMIN_SCRIPTS/master.zshrc"
 fi
 
-export GOROOT=`go env GOROOT`
 export GOPATH="$HOME/hungry/go"
 
 path[1,0]=(
@@ -36,9 +35,10 @@ path[1,0]=(
   /usr/sbin
   /bin
   /sbin
-  $GOROOT/bin
   $GOPATH/bin
 )
+export GOROOT=`go env GOROOT`
+export PATH="$PATH:$GOROOT/bin"
 if [[ -z "$ADMIN_SCRIPTS" ]]; then
 
   path[1,0]=(
