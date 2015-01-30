@@ -23,7 +23,7 @@ fi
 
 export GOPATH="$HOME/hungry/go"
 
-path[1,0]=(
+paths=(
   $HOME/.rbenv/bin
   /usr/local/bin
   /usr/local/go/bin
@@ -37,6 +37,10 @@ path[1,0]=(
   /sbin
   $GOPATH/bin
 )
+for i in $paths; do
+  export PATH="$PATH:$i"
+done
+
 command -v go > /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
   export GOROOT=`go env GOROOT`
@@ -44,11 +48,15 @@ fi
 export PATH="$PATH:$GOROOT/bin"
 if [[ -d "$ADMIN_SCRIPTS" ]]; then
 
-  path[1,0]=(
+  paths=(
     /home/engshare/admin/scripts
     /home/engshare/admin/scripts/git
     /home/engshare/admin/scripts/hg
   )
+
+  for i in $paths; do
+    export PATH="$PATH:$i"
+  done
   source "${ADMIN_SCRIPTS}/scm-prompt"
   export HTTP_PROXY=http://fwdproxy.any.facebook.com:8080
   export HTTPS_PROXY=http://fwdproxy.any.facebook.com:8080
