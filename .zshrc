@@ -61,3 +61,5 @@ alias agr="ag --ruby"
 
 # added by travis gem
 [ -f /Users/abhishekk/.travis/travis.sh ] && source /Users/abhishekk/.travis/travis.sh
+# fasd stuff
+eval "$(fasd --init auto)"
