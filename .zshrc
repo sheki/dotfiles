@@ -61,6 +61,8 @@ if [[ -d "$ADMIN_SCRIPTS" ]]; then
   export HTTP_PROXY=http://fwdproxy.any.facebook.com:8080
   export HTTPS_PROXY=http://fwdproxy.any.facebook.com:8080
   export NO_PROXY=fbcdn.net,facebook.com,thefacebook.com,tfbnw.net,fb.com,fburl.com,localhost
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  source "/home/abhishekk/pyvirtualenv/BASE/bin/activate"
 fi
 
 eval "$(rbenv init -)"
