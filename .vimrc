@@ -70,6 +70,8 @@ nmap <leader>m :CtrlPMRUFiles<CR>
 
 let g:ctrlp_switch_buffer=1
 let g:ctrpl_reuse_window=1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip " avoid tmp for ctrlp
+
 " so that go-code does not pop up a scratch
 set completeopt-=preview
 set completeopt+=longest
@@ -111,3 +113,4 @@ let g:syntastic_mode_map = {
   \ "mode": "active",
   \ "active_filetypes": ["ruby", "python"],
   \ "passive_filetypes": ["puppet"] }
+

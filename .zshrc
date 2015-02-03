@@ -78,6 +78,6 @@ alias agr="ag --ruby"
 eval "$(fasd --init auto)"
 
 # The next line updates PATH for the Google Cloud SDK.
-GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.bash.inc"
+GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.zsh.inc"
 [ -f "$GOOGLE_APPENGINE_SDK" ] && source "$GOOGLE_APPENGINE_SDK"
 alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
