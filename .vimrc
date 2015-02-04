@@ -71,6 +71,7 @@ nmap <leader>m :CtrlPMRUFiles<CR>
 let g:ctrlp_switch_buffer=1
 let g:ctrpl_reuse_window=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip " avoid tmp for ctrlp
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp-'.hostname()
 
 " so that go-code does not pop up a scratch
 set completeopt-=preview
