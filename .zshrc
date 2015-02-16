@@ -76,8 +76,17 @@ alias agr="ag --ruby"
 [ -f /Users/abhishekk/.travis/travis.sh ] && source /Users/abhishekk/.travis/travis.sh
 # fasd stuff
 eval "$(fasd --init auto)"
+alias v='f -e vim' # quick opening files with vim
 
 # The next line updates PATH for the Google Cloud SDK.
 GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.zsh.inc"
 [ -f "$GOOGLE_APPENGINE_SDK" ] && source "$GOOGLE_APPENGINE_SDK"
 alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
+
+
+if [[ -d "/Users/abhishekk/.boot2docker" ]]; then
+# docker mac stuff
+  export DOCKER_HOST=tcp://192.168.59.103:2376
+  export DOCKER_CERT_PATH=/Users/abhishekk/.boot2docker/certs/boot2docker-vm
+  export DOCKER_TLS_VERIFY=1
+fi
