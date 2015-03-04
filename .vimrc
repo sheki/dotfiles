@@ -18,6 +18,7 @@ Plugin 'rking/ag.vim'
 Plugin 'tomasr/molokai'
 Plugin 'zenorocha/dracula-theme'
 Plugin 'scrooloose/syntastic'
+Plugin 'tomtom/tcomment_vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
