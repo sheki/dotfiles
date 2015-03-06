@@ -90,3 +90,9 @@ if [[ -d "/Users/abhishekk/.boot2docker" ]]; then
   export DOCKER_CERT_PATH=/Users/abhishekk/.boot2docker/certs/boot2docker-vm
   export DOCKER_TLS_VERIFY=1
 fi
+
+#add custom arcanist install path
+ARC_BIN_PATH="$HOME/arcanist/arcanist/bin"
+if [[ -d $ARC_BIN_PATH ]]; then
+  export PATH="$PATH:$ARC_BIN_PATH"
+fi
