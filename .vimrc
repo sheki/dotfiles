@@ -94,6 +94,9 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 autocmd BufWritePre *.rb :%s/\s\+$//e
 au BufRead *.md setlocal spell
 
+autocmd BufWritePost *.rb !rubocop -a %
+autocmd BufWritePost *.js !js-beautify  -r %
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -110,9 +113,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
-
-let g:syntastic_mode_map = {
-  \ "mode": "active",
-  \ "active_filetypes": ["ruby", "python"],
-  \ "passive_filetypes": ["puppet"] }
 
