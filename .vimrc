@@ -19,6 +19,7 @@ Plugin 'tomasr/molokai'
 Plugin 'zenorocha/dracula-theme'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'rhysd/vim-clang-format'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -71,8 +72,18 @@ nmap <leader>m :CtrlPMRUFiles<CR>
 
 let g:ctrlp_switch_buffer=1
 let g:ctrpl_reuse_window=1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip " avoid tmp for ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*new-commit,*commit-message" avoid tmp for ctrlp
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp-'.hostname()
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.a"
+      \ --ignore "**/*.pyc"
+      \ --ignore "**/*.java"
+      \ --ignore "android/*"
+      \ -g ""'
 
 " so that go-code does not pop up a scratch
 set completeopt-=preview
@@ -114,3 +125,20 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
+let g:clang_format#auto_format = 1
+" Run arc lint and put the results into the quickfix list
+
+function! s:ArcLint(args)
+    let olderrorformat = &errorformat
+    let oldmakeprg = &makeprg
+
+    set errorformat=%f:%l:%m
+    let &makeprg="arc lint --output compiler ".a:args
+    silent make
+    redraw!
+
+    let &errorformat = olderrorformat
+    let &makeprg = oldmakeprg
+    copen
+endfunction
+command! -nargs=* ArcLint call s:ArcLint("<args>")
