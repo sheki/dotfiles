@@ -1,0 +1,37 @@
+[color]
+	ui = auto 
+[user]
+	name = abhishekk
+	email = abhishek@parse.com
+[push]
+    default = current
+[pull]
+    default = current
+[core]
+	pager = less -F -X
+	excludesfile = ~/.gitignore
+	mergetool = vimdiff
+	editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[help]
+    autocorrect = 1
+[alias]
+  branch = branch -v
+  amn = commit -a --amend --no-edit
+  ms = checkout master
+  b = branch -v
+  r = rebase -q
+  p = pull --rebase --quiet origin master 
+  d = diff --name-only
+  m = checkout master
+  ua = ls-files --others --exclude-standard
+  url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
+  vanquish = submodule update --init --recursive
+	plog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[merge]
+	tool = kdiff3
+[branch]
+	autosetuprebase = always
