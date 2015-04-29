@@ -125,3 +125,4 @@ if [[ -x `which curl` ]]; then
 else
     echo "rand-quote plugin needs curl to work" >&2
 fi
+alias nproc='sysctl -n hw.ncpu'

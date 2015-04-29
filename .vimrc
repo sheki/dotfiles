@@ -122,10 +122,16 @@ au BufNewFile,BufRead *.tw set filetype=python
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
-let g:clang_format#auto_format = 1
+let g:syntastic_mode_map = {
+      \ "mode" : "active",
+      \ "passive_filetypes" : [ "go" ] ,
+      \ "active_filetypes" :  [ "ruby", "php" ]
+      \}
+
+"let g:clang_format#auto_format = 1
 " Run arc lint and put the results into the quickfix list
 
 function! s:ArcLint(args)
