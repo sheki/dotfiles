@@ -14,7 +14,6 @@ fi
 export EDITOR="vim"
 export ADMIN_SCRIPTS="/home/engshare/admin/scripts"
 
-alias gt='go test -cpu=2 -parallel=10'
 
 if [[ -d "$ADMIN_SCRIPTS" ]]; then
   alias gt='parsebox go test'
@@ -36,6 +35,7 @@ paths=(
   /bin
   /sbin
   $GOPATH/bin
+  $HOME/bin
 )
 for i in $paths; do
   export PATH="$PATH:$i"
@@ -66,22 +66,15 @@ if [[ -d "$ADMIN_SCRIPTS" ]]; then
 fi
 
 eval "$(rbenv init -)"
-alias agg='ag --go'
 export LANG=en_US.UTF-8
-alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
-alias agg="ag --go"
-alias agr="ag --ruby"
-
 # added by travis gem
 [ -f /Users/abhishekk/.travis/travis.sh ] && source /Users/abhishekk/.travis/travis.sh
 # fasd stuff
 eval "$(fasd --init auto)"
-alias v='f -e vim' # quick opening files with vim
 
 # The next line updates PATH for the Google Cloud SDK.
 GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.zsh.inc"
 [ -f "$GOOGLE_APPENGINE_SDK" ] && source "$GOOGLE_APPENGINE_SDK"
-alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
 
 
 if [[ -d "/Users/abhishekk/.boot2docker" ]]; then
@@ -125,4 +118,15 @@ if [[ -x `which curl` ]]; then
 else
     echo "rand-quote plugin needs curl to work" >&2
 fi
+
+# All the aliases
 alias nproc='sysctl -n hw.ncpu'
+alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
+alias agg='ag --go'
+alias gt='go test -cpu=2 -parallel=10'
+alias v='f -e vim' # quick opening files with vim
+alias agr="ag --ruby"
+alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
+if ! type "hub" > /dev/null; then
+  eval "$(hub alias -s)" #alias hub ?
+fi

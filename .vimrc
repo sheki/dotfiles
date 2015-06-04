@@ -105,8 +105,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 autocmd BufWritePre *.rb :%s/\s\+$//e
 au BufRead *.md setlocal spell
 
-autocmd BufWritePost *.rb !rubocop -a %
-autocmd BufWritePost *.js !js-beautify  -r %
+"autocmd BufWritePost *.rb !rubocop -a %
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
