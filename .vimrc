@@ -16,10 +16,12 @@ Plugin 'vim-scripts/summerfruit256.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rking/ag.vim'
 Plugin 'tomasr/molokai'
-Plugin 'zenorocha/dracula-theme'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'mxw/vim-jsx'
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -41,7 +43,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " let g:UltiSnipsEditSplit="vertical"
 " " All of your Plugins must be added before the following line
 
-colorscheme solarized 
+colorscheme molokai 
 set background=light
 set encoding=utf8
 set nobackup
@@ -66,8 +68,7 @@ let g:go_highlight_structs=1
 " Leader stuff
 let mapleader = ','
 nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>t :CtrlP $HOME/hungry<CR>
-nmap <leader>g :CtrlP $HOME/hungry/go/src<CR>
+nmap <leader>t :CtrlP<CR>
 nmap <leader>m :CtrlPMRUFiles<CR>
 
 let g:ctrlp_switch_buffer=1
@@ -147,3 +148,4 @@ function! s:ArcLint(args)
     copen
 endfunction
 command! -nargs=* ArcLint call s:ArcLint("<args>")
+let g:jsx_ext_required = 0

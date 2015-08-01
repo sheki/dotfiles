@@ -36,6 +36,7 @@ paths=(
   /sbin
   $GOPATH/bin
   $HOME/bin
+  $HOME/software/bazel/output
 )
 for i in $paths; do
   export PATH="$PATH:$i"
@@ -61,8 +62,12 @@ if [[ -d "$ADMIN_SCRIPTS" ]]; then
   export HTTP_PROXY=http://fwdproxy.any.facebook.com:8080
   export HTTPS_PROXY=http://fwdproxy.any.facebook.com:8080
   export NO_PROXY=fbcdn.net,facebook.com,thefacebook.com,tfbnw.net,fb.com,fburl.com,localhost
+fi
+
+
+if [[ -d "$HOME/globalvenv" ]]; then
   export VIRTUAL_ENV_DISABLE_PROMPT=1
-  source "/home/abhishekk/pyvirtualenv/BASE/bin/activate"
+  source "$HOME/globalvenv/bin/activate"
 fi
 
 eval "$(rbenv init -)"
@@ -102,23 +107,6 @@ TEXT_COLOR="\e[0;35m"
 COLON_COLOR="\e[0;35m"
 END_COLOR="\e[m"
 
-if [[ -x `which curl` ]]; then
-    function quote()
-    {
-        Q=$(curl -s --connect-timeout 2 "http://www.quotationspage.com/random.php3" | iconv -c -f ISO-8859-1 -t UTF-8 | grep -m 1 "dt ")
-        TXT=$(echo "$Q" | sed -e 's/<\/dt>.*//g' -e 's/.*html//g' -e 's/^[^a-zA-Z]*//' -e 's/<\/a..*$//g')
-        W=$(echo "$Q" | sed -e 's/.*\/quotes\///g' -e 's/<.*//g' -e 's/.*">//g')
-        if [ "$W" -a "$TXT" ]; then
-          echo "${WHO_COLOR}${W}${COLON_COLOR}: ${TEXT_COLOR}“${TXT}”${END_COLOR}"
-        else
-          quote
-        fi
-    }
-    quote
-else
-    echo "rand-quote plugin needs curl to work" >&2
-fi
-
 # All the aliases
 alias nproc='sysctl -n hw.ncpu'
 alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
@@ -130,3 +118,7 @@ alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
 if ! type "hub" > /dev/null; then
   eval "$(hub alias -s)" #alias hub ?
 fi
+
+# bazel auto completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
