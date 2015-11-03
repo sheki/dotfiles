@@ -107,6 +107,9 @@ TEXT_COLOR="\e[0;35m"
 COLON_COLOR="\e[0;35m"
 END_COLOR="\e[m"
 
+NPM_HOME=$(npm config get prefix)
+PATH="$PATH:$NPM_HOME/bin"
+
 # All the aliases
 alias nproc='sysctl -n hw.ncpu'
 alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
@@ -122,3 +125,4 @@ fi
 # bazel auto completion
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
