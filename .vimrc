@@ -28,6 +28,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
+Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()            " required
 
