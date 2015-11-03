@@ -1,15 +1,3 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
 # Customize to your needs...
 export EDITOR="vim"
 export ADMIN_SCRIPTS="/home/engshare/admin/scripts"
@@ -70,12 +58,19 @@ if [[ -d "$HOME/globalvenv" ]]; then
   source "$HOME/globalvenv/bin/activate"
 fi
 
-eval "$(rbenv init -)"
+command -v rbenv > /dev/null 2>&1
+if [[ $? -eq 0 ]]; then
+  eval "$(rbenv init -)"
+fi
+
+command -v fasd> /dev/null 2>&1
+if [[ $? -eq 0 ]]; then
+  eval "$(fasd --init auto)"
+fi
+
 export LANG=en_US.UTF-8
 # added by travis gem
 [ -f /Users/abhishekk/.travis/travis.sh ] && source /Users/abhishekk/.travis/travis.sh
-# fasd stuff
-eval "$(fasd --init auto)"
 
 # The next line updates PATH for the Google Cloud SDK.
 GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.zsh.inc"
@@ -95,17 +90,6 @@ if [[ -d $ARC_BIN_PATH ]]; then
   export PATH="$PATH:$ARC_BIN_PATH"
 fi
 
-# Get a random quote fron the site http://www.quotationspage.com/random.php3
-# Created by Eduardo San Martin Morote aka Posva
-# http://posva.github.io
-# Sun Jun 09 10:59:36 CEST 2013 
-# Don't remove this header, thank you
-# Usage: quote
-
-WHO_COLOR="\e[0;33m"
-TEXT_COLOR="\e[0;35m"
-COLON_COLOR="\e[0;35m"
-END_COLOR="\e[m"
 
 NPM_HOME=$(npm config get prefix)
 PATH="$PATH:$NPM_HOME/bin"
@@ -118,11 +102,3 @@ alias gt='go test -cpu=2 -parallel=10'
 alias v='f -e vim' # quick opening files with vim
 alias agr="ag --ruby"
 alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
-if ! type "hub" > /dev/null; then
-  eval "$(hub alias -s)" #alias hub ?
-fi
-
-# bazel auto completion
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-
