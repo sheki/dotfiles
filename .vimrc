@@ -21,9 +21,17 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'mxw/vim-jsx'
+" snip mate stuff
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
 
 call vundle#end()            " required
 
+let g:syntastic_javascript_checkers = ['eslint']
 filetype plugin indent on    " required
 map <F1> <Esc>
 set cc=80
@@ -34,7 +42,7 @@ filetype indent on
 set autoread
 set cmdheight=2
 let g:hybrid_use_iTerm_colors = 1
-"colorscheme solarized 
+colorscheme solarized 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -43,7 +51,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " let g:UltiSnipsEditSplit="vertical"
 " " All of your Plugins must be added before the following line
 
-colorscheme molokai 
 set background=light
 set encoding=utf8
 set nobackup
@@ -73,7 +80,8 @@ nmap <leader>m :CtrlPMRUFiles<CR>
 
 let g:ctrlp_switch_buffer=1
 let g:ctrpl_reuse_window=1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*new-commit,*commit-message" avoid tmp for ctrlp
+let g:ctrlp_custom_ignore =  'new-commit\|\.a$\|git'
+
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp-'.hostname()
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
@@ -106,7 +114,9 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 autocmd BufWritePre *.rb :%s/\s\+$//e
 au BufRead *.md setlocal spell
 
-"autocmd BufWritePost *.rb !rubocop -a %
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd BufWritePost *.rb !rubocop -a %
+au BufWritePre *.js :call JsBeautify()
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -149,3 +159,12 @@ function! s:ArcLint(args)
 endfunction
 command! -nargs=* ArcLint call s:ArcLint("<args>")
 let g:jsx_ext_required = 0
+
+
+"" experimental vimrc for snipmate
+let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"                                           
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
