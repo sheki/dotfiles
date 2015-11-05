@@ -29,7 +29,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'elixir-lang/vim-elixir'
-
+Plugin 'brendonrapp/smyck-vim'
 call vundle#end()            " required
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -43,7 +43,7 @@ filetype indent on
 set autoread
 set cmdheight=2
 let g:hybrid_use_iTerm_colors = 1
-colorscheme solarized 
+colorscheme smyck
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
