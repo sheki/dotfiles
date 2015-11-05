@@ -1,7 +1,12 @@
-# Customize to your needs...
+
+export ZSH=/Users/sheki/.oh-my-zsh
+ZSH_THEME="random"
+plugins=(git fasd vim)
+source $ZSH/oh-my-zsh.sh
+
+
 export EDITOR="vim"
 export ADMIN_SCRIPTS="/home/engshare/admin/scripts"
-
 
 if [[ -d "$ADMIN_SCRIPTS" ]]; then
   alias gt='parsebox go test'
