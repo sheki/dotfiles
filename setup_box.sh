@@ -1,5 +1,5 @@
 #!/bin/bash -e
-brew install vim git ag fasd
+brew install vim git ag fasd jq jsonpp
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
