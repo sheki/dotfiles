@@ -30,9 +30,21 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'brendonrapp/smyck-vim'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 call vundle#end()            " required
 
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jscs']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = {
+      \ "mode" : "active",
+      \ "passive_filetypes" : [ "go" ] ,
+      \ "active_filetypes" :  [ "ruby", "php", "js" ]
+      \}
+
+
 filetype plugin indent on    " required
 map <F1> <Esc>
 set cc=80
@@ -117,7 +129,6 @@ au BufRead *.md setlocal spell
 
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd BufWritePost *.rb !rubocop -a %
-au BufWritePre *.js :call JsBeautify()
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -130,17 +141,6 @@ augroup END
 ab mga Mattieuga
 autocmd BufWritePre *.md :%s/\s\+$//e
 au BufNewFile,BufRead *.tw set filetype=python
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_mode_map = {
-      \ "mode" : "active",
-      \ "passive_filetypes" : [ "go" ] ,
-      \ "active_filetypes" :  [ "ruby", "php" ]
-      \}
 
 "let g:clang_format#auto_format = 1
 " Run arc lint and put the results into the quickfix list
