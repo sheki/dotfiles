@@ -30,6 +30,7 @@ paths=(
   $GOPATH/bin
   $HOME/bin
   $HOME/software/bazel/output
+  /usr/local/dev-env/bin
 )
 for i in $paths; do
   export PATH="$PATH:$i"
@@ -82,13 +83,6 @@ GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.zsh.inc"
 [ -f "$GOOGLE_APPENGINE_SDK" ] && source "$GOOGLE_APPENGINE_SDK"
 
 
-if [[ -d "/Users/abhishekk/.boot2docker" ]]; then
-# docker mac stuff
-  export DOCKER_HOST=tcp://192.168.59.103:2376
-  export DOCKER_CERT_PATH=/Users/abhishekk/.boot2docker/certs/boot2docker-vm
-  export DOCKER_TLS_VERIFY=1
-fi
-
 #add custom arcanist install path
 ARC_BIN_PATH="$HOME/arcanist/arcanist/bin"
 if [[ -d $ARC_BIN_PATH ]]; then
@@ -102,8 +96,6 @@ PATH="$PATH:$NPM_HOME/bin"
 # All the aliases
 alias nproc='sysctl -n hw.ncpu'
 alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
-alias agg='ag --go'
-alias gt='go test -cpu=2 -parallel=10'
 alias v='f -e vim' # quick opening files with vim
-alias agr="ag --ruby"
-alias goapp="$HOME/google-cloud-sdk/platform/google_appengine/goapp"
+
+eval "$(docker-machine env dev)"

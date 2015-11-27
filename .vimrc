@@ -31,6 +31,7 @@ Plugin 'einars/js-beautify'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'brendonrapp/smyck-vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'ternjs/tern_for_vim'
 call vundle#end()            " required
 
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
