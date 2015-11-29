@@ -1,6 +1,6 @@
 #!/bin/bash -e
 brew install vim git ag fasd jq jsonpp npm cmake wget
-brew cask install spotify
+brew cask install spotify iterm2 notational-velocity
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
