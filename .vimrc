@@ -89,7 +89,7 @@ let g:go_highlight_structs=1
 " Leader stuff
 let mapleader = ','
 nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>t :CtrlP<CR>
+nmap <leader>f :CtrlP<CR>
 nmap <leader>m :CtrlPMRUFiles<CR>
 
 let g:ctrlp_switch_buffer=1
@@ -170,3 +170,6 @@ let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"                                           
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+"
+""" Tern for js
+let g:tern_map_keys=1
