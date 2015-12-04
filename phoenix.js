@@ -289,9 +289,6 @@ keys.push(Phoenix.bind('3', mash, function() { callAndMaximize('Google Chrome');
 keys.push(Phoenix.bind('4', mash, function() { callAndMaximize('iTerm'); }));
 
 
-
-
-
 /**
  * My Configuartion Screen
  */
@@ -362,16 +359,6 @@ keys.push(Phoenix.bind('delete', mash, function() {
   heartbeat_window(window);
   hide_inactiveWindow(window.otherWindowsOnAllScreens());
 }));
-
-//var handler_CMD_BTN_h = Phoenix.bind('h', CMD_BTN, function() {
-  //var window = Window.focusedWindow();
-  //if (!window) return;
-  //window.app().hide();
-  //var window = Window.focusedWindow();
-  //Modal.show(window.title());  // TODO need delay
-  //if (!window) return;
-  //restore_mouse_position_for_window(window);
-//});
 
 // Window Maximize
 keys.push(Phoenix.bind('m', mashShift, function() {

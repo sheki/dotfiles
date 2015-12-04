@@ -55,7 +55,7 @@ filetype indent on
 set autoread
 set cmdheight=2
 let g:hybrid_use_iTerm_colors = 1
-colorscheme solarized
+colorscheme smyck 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
