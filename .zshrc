@@ -8,12 +8,13 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR="vim"
 export ADMIN_SCRIPTS="/home/engshare/admin/scripts"
 
-if [[ -d "$ADMIN_SCRIPTS" ]]; then
-  alias gt='parsebox go test'
-  source "$ADMIN_SCRIPTS/master.zshrc"
-fi
+# prefer gnu coreutils
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+alias ls='ls --color=tty'
 
-export GOPATH="$HOME/hungry/go"
+export GOPATH="$HOME/go"
+VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/.virtualenv/VIRTUAL/bin/activate
 
 paths=(
   $HOME/.rbenv/bin
@@ -31,6 +32,7 @@ paths=(
   $HOME/bin
   $HOME/software/bazel/output
   /usr/local/dev-env/bin
+  $HOME/.virtualenv/VIRTUAL/bin
 )
 for i in $paths; do
   export PATH="$PATH:$i"
@@ -41,33 +43,6 @@ if [[ $? -eq 0 ]]; then
   export GOROOT=`go env GOROOT`
 fi
 export PATH="$PATH:$GOROOT/bin"
-if [[ -d "$ADMIN_SCRIPTS" ]]; then
-
-  paths=(
-    /home/engshare/admin/scripts
-    /home/engshare/admin/scripts/git
-    /home/engshare/admin/scripts/hg
-  )
-
-  for i in $paths; do
-    export PATH="$PATH:$i"
-  done
-  source "${ADMIN_SCRIPTS}/scm-prompt"
-  export HTTP_PROXY=http://fwdproxy.any.facebook.com:8080
-  export HTTPS_PROXY=http://fwdproxy.any.facebook.com:8080
-  export NO_PROXY=fbcdn.net,facebook.com,thefacebook.com,tfbnw.net,fb.com,fburl.com,localhost
-fi
-
-
-if [[ -d "$HOME/globalvenv" ]]; then
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
-  source "$HOME/globalvenv/bin/activate"
-fi
-
-command -v rbenv > /dev/null 2>&1
-if [[ $? -eq 0 ]]; then
-  eval "$(rbenv init -)"
-fi
 
 command -v fasd> /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
@@ -97,5 +72,3 @@ PATH="$PATH:$NPM_HOME/bin"
 alias nproc='sysctl -n hw.ncpu'
 alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
 alias v='f -e vim' # quick opening files with vim
-
-eval "$(docker-machine env dev)"

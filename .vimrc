@@ -32,6 +32,11 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'brendonrapp/smyck-vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'ternjs/tern_for_vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'romainl/flattened'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'junkblocker/patchreview-vim'
+Plugin 'codegram/vim-codereview'
 call vundle#end()            " required
 
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
@@ -56,7 +61,9 @@ filetype indent on
 set autoread
 set cmdheight=2
 let g:hybrid_use_iTerm_colors = 1
-colorscheme smyck 
+"colorscheme flattened_light
+let g:seoul256_background = 236
+color seoul256
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"

@@ -24,7 +24,7 @@
   ms = checkout master
   b = branch -v
   r = rebase -q
-  p = pull --rebase --quiet origin master 
+  p = pull --rebase --quiet origin 
   d = diff --name-only
   m = checkout master
   ua = ls-files --others --exclude-standard
@@ -32,6 +32,7 @@
   vanquish = submodule update --init --recursive
 	plog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   l = ls-files
+	appraise = !/Users/sheki/hungry/go/bin/git-appraise
 [merge]
 	tool = kdiff3
 [branch]
