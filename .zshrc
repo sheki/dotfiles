@@ -1,6 +1,6 @@
 
 export ZSH=/Users/sheki/.oh-my-zsh
-ZSH_THEME="random"
+ZSH_THEME="cloud"
 plugins=(git fasd vim)
 source $ZSH/oh-my-zsh.sh
 
@@ -72,3 +72,6 @@ PATH="$PATH:$NPM_HOME/bin"
 alias nproc='sysctl -n hw.ncpu'
 alias ag='ag --color-match 31\;31 --color-line-number 2\;33 --color-path 2\;32'
 alias v='f -e vim' # quick opening files with vim
+
+# added by travis gem
+[ -f /Users/sheki/.travis/travis.sh ] && source /Users/sheki/.travis/travis.sh
