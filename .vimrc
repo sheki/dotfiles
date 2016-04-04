@@ -10,7 +10,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/summerfruit256.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -18,7 +17,6 @@ Plugin 'rking/ag.vim'
 Plugin 'tomasr/molokai'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'rhysd/vim-clang-format'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'mxw/vim-jsx'
 " snip mate stuff
@@ -27,13 +25,13 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'elixir-lang/vim-elixir'
-Plugin 'brendonrapp/smyck-vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'romainl/flattened'
-Plugin 'junegunn/seoul256.vim'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'brendonrapp/smyck-vim'
+Plugin 'trotzig/import-js'
 call vundle#end()            " required
 
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
@@ -60,7 +58,8 @@ let g:hybrid_use_iTerm_colors = 1
 "colorscheme flattened_light
 let g:seoul256_background = 236
 "color seoul256
-color solarized
+"color flattened_light
+color summerfruit256
 set bg=light
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
