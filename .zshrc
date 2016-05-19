@@ -1,12 +1,9 @@
-
 export ZSH=/Users/sheki/.oh-my-zsh
 ZSH_THEME="cloud"
 plugins=(git fasd vim)
 source $ZSH/oh-my-zsh.sh
 
-
 export EDITOR="vim"
-export ADMIN_SCRIPTS="/home/engshare/admin/scripts"
 
 # prefer gnu coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -50,20 +47,9 @@ if [[ $? -eq 0 ]]; then
 fi
 
 export LANG=en_US.UTF-8
-# added by travis gem
-[ -f /Users/abhishekk/.travis/travis.sh ] && source /Users/abhishekk/.travis/travis.sh
-
 # The next line updates PATH for the Google Cloud SDK.
 GOOGLE_APPENGINE_SDK="$HOME/google-cloud-sdk/path.zsh.inc"
 [ -f "$GOOGLE_APPENGINE_SDK" ] && source "$GOOGLE_APPENGINE_SDK"
-
-
-#add custom arcanist install path
-ARC_BIN_PATH="$HOME/arcanist/arcanist/bin"
-if [[ -d $ARC_BIN_PATH ]]; then
-  export PATH="$PATH:$ARC_BIN_PATH"
-fi
-
 
 NPM_HOME=$(npm config get prefix)
 PATH="$PATH:$NPM_HOME/bin"
@@ -75,3 +61,12 @@ alias v='f -e vim' # quick opening files with vim
 
 # added by travis gem
 [ -f /Users/sheki/.travis/travis.sh ] && source /Users/sheki/.travis/travis.sh
+
+eval `dircolors ~/.dir_colors`
+# EMOJI PROMPT HACK
+EMOJI=(💩 🐦 🚀 🐞 🎨 🍕 🐭 👽 ☕️ 🔬 💀 🐷 🐼 🐶 🐸 🐧 🐳 🍔 🍣 🍻 🔮 💰 💎 💾 💜 🍪 🌞 🌍 🐌 🐓 🍄 )
+
+function random_emoji {
+  echo -n "$EMOJI[$RANDOM%$#EMOJI+1]"
+}
+PROMPT="$(random_emoji) $PROMPT"
