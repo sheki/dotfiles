@@ -9,40 +9,50 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/summerfruit256.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'rking/ag.vim'
 Plugin 'tomasr/molokai'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'mxw/vim-jsx'
-" snip mate stuff
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'elixir-lang/vim-elixir'
+Plugin 'dracula/vim'
+Plugin 'vim-airline/vim-airline'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'romainl/flattened'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'brendonrapp/smyck-vim'
-Plugin 'trotzig/import-js'
+Plugin 'gavocanov/vim-js-indent'
+Plugin 'morhetz/gruvbox'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'flowtype/vim-flow'
+Plugin 'lambdatoast/elm.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'chriskempson/base16-vim'
 call vundle#end()            " required
 
-let g:syntastic_javascript_checkers = ['eslint', 'jscs']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {
-      \ "mode" : "active",
-      \ "passive_filetypes" : [ "go", "javascript" ] ,
-      \}
-
-
+let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+" let g:syntastic_debug = 33
+" let g:syntastic_debug_file = "~/syntastic.log"
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
 filetype plugin indent on    " required
 map <F1> <Esc>
 set cc=80
@@ -52,13 +62,12 @@ filetype plugin on
 filetype indent on
 set autoread
 set cmdheight=2
+
 let g:hybrid_use_iTerm_colors = 1
-"colorscheme flattened_light
-let g:seoul256_background = 236
-"color seoul256
-"color flattened_light
-color summerfruit256
+let base16colorspace=256
+colorscheme base16-google-light
 set bg=light
+
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -115,6 +124,9 @@ if $TERM_PROGRAM =~ "iTerm"
   let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
   let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
+let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+
 set clipboard=unnamed
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -127,8 +139,6 @@ au BufRead *.md setlocal spell
 
 autocmd BufWritePre *.md :%s/\s\+$//e
 
-let g:jsx_ext_required = 0
-
 "" experimental vimrc for snipmate
 let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
@@ -139,9 +149,42 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 "
 """ Tern for js
 let g:tern_map_keys=1
-set foldmethod=indent
-set foldnestmax=5
-set nofoldenable
-set foldlevel=2
-let g:ag_prg="ag --ignore /node_modules/ --ignore \\\*.min.js --vimgrep"
-let g:neomake_javascript_enabled_makers = ['eslint']
+
+" set foldmethod=indent
+" set foldnestmax=5
+" set foldlevel=0
+" let g:ag_prg="ag --ignore /node_modules/ --ignore \\\*.min.js --vimgrep"
+set autowrite
+
+"" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+autocmd BufRead,BufNewFile *.js cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>
+autocmd BufRead,BufNewFile *.js cabbrev wq <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'wq')<CR>
+autocmd BufRead,BufNewFile *.js cabbrev wqa <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'wq')<CR>
+autocmd BufRead,BufNewFile *.js cabbrev qa <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'wq')<CR>
+" Set the title of the Terminal to the currently open file
+function! SetTerminalTitle()
+    let titleString = "VIM: " . getcwd()
+    if len(titleString) > 0
+        let &titlestring = "VIM: " . getcwd()
+        " this is the format iTerm2 expects when setting the window title
+        let args = "\033];".&titlestring."\007"
+        let cmd = 'silent !echo -e "'.args.'"'
+        execute cmd
+        redraw!
+    endif
+endfunction
+
+autocmd BufEnter * call SetTerminalTitle()
+let g:flow#autoclose = 1
+let g:flow#enable = 0
+" set so=999
+inoremap jj <Esc>
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endi
