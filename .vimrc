@@ -162,23 +162,6 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-autocmd BufRead,BufNewFile *.js cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>
-autocmd BufRead,BufNewFile *.js cabbrev wq <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'wq')<CR>
-autocmd BufRead,BufNewFile *.js cabbrev wqa <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'wq')<CR>
-autocmd BufRead,BufNewFile *.js cabbrev qa <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'wq')<CR>
-" Set the title of the Terminal to the currently open file
-function! SetTerminalTitle()
-    let titleString = "VIM: " . getcwd()
-    if len(titleString) > 0
-        let &titlestring = "VIM: " . getcwd()
-        " this is the format iTerm2 expects when setting the window title
-        let args = "\033];".&titlestring."\007"
-        let cmd = 'silent !echo -e "'.args.'"'
-        execute cmd
-        redraw!
-    endif
-endfunction
-
 autocmd BufEnter * call SetTerminalTitle()
 let g:flow#autoclose = 1
 let g:flow#enable = 0
