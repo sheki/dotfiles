@@ -162,7 +162,6 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-autocmd BufEnter * call SetTerminalTitle()
 let g:flow#autoclose = 1
 let g:flow#enable = 0
 " set so=999
