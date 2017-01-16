@@ -1,6 +1,6 @@
-export ZSH=/Users/sheki/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # export ZSH_CUSTOM=$HOME/.zshcustom
-ZSH_THEME="cloud"
+ZSH_THEME="random"
 DISABLE_AUTO_TITLE="true"
 plugins=(git fasd vim)
 source $ZSH/oh-my-zsh.sh
@@ -74,8 +74,6 @@ function random_emoji {
   echo -n "$EMOJI[$RANDOM%$#EMOJI+1]"
 }
 PROMPT="$(random_emoji) $PROMPT"
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
-export PATH=$PATH:$HOME/arc/arcanist/bin
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export EDITOR="vim -u NONE"
