@@ -2,7 +2,7 @@
 	ui = auto 
 [user]
 	name = sheki
-	email = abhishek.kona@thinkbright.mx
+	email = abhishek.kona@gmail.com
 [push]
     default = current
 [pull]
@@ -10,8 +10,8 @@
 [core]
 	pager = less -F -X
 	excludesfile = ~/.gitignore
-	mergetool = vimdiff
 	editor = vim
+  mergetool = vimdiff
 [diff]
 	tool = vimdiff
 [difftool]
@@ -19,7 +19,7 @@
 [help]
     autocorrect = 1
 [alias]
-  branch = branch -v
+  b = branch -v
   amn = commit -a --amend --no-edit
   ms = checkout master
   b = branch -v
@@ -39,9 +39,9 @@
   pending = codereview pending
   submit = codereview submit
   sync = codereview sync
+  s = status -uno
+  ch = ! bash -c 'git checkout $(git ls-files -m | fzf -m)'
 [merge]
 	tool = kdiff3
 [branch]
 	autosetuprebase = always
-[http]
-	cookiefile = /Users/sheki/.gitcookies
