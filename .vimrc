@@ -13,7 +13,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
 Plugin 'tomtom/tcomment_vim'
-" Plugin 'ternjs/tern_for_vim'
+Plugin 'ternjs/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'gavocanov/vim-js-indent'
 Plugin 'junegunn/seoul256.vim'
@@ -42,7 +42,16 @@ Plugin 'morhetz/gruvbox'
 Plugin 'zhaocai/GoldenView.Vim'
 Plugin 'w0rp/ale'
 Plugin 'junegunn/vim-emoji'
+Plugin 'inside/vim-textobj-jsxattr'
+Plugin 'majutsushi/tagbar'
 call vundle#end()            " required
+
+set lazyredraw
+set wildmenu
+set cursorline
+set incsearch
+set hlsearch
+nnoremap <leader><space> :nohlsearch<CR>
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '💩'
@@ -176,3 +185,8 @@ let g:ale_sign_column_always = 1
 " let g:lightline = {
 "       \ 'colorscheme': 'iceberg',
 "       \ }
+"
+if $ITERM_PROFILE =~ "vim"
+  colorscheme iceberg
+endif
+set tags=./git/tags
