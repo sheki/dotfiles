@@ -13,16 +13,17 @@
 	editor = vim
   mergetool = vimdiff
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = false
+  tool = vimdiff
+  prompt = false
 [help]
     autocorrect = 1
 [alias]
-  b = branch -v
+  branch = b
+  b = branch -v --sort=-committerdate
   amn = commit -a --amend --no-edit
   ms = checkout master
-  b = branch -v
   r = rebase -q
   p = pull --rebase --quiet origin 
   d = diff --name-only

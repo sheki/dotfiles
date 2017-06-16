@@ -14,7 +14,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 alias ls='ls --color=tty'
 
-export GOPATH="$HOME/github/brightsolar/api/go"
+export GOPATH="$HOME/go"
 # VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/.virtualenv/VIRTUAL/bin/activate
 
 paths=(
@@ -158,3 +158,6 @@ function clearit() {
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 PLAN9=$HOME/plan9port
 PATH=$PATH:$PLAN9/bin
+
+export PATH="$HOME/.yarn/bin:$PATH"
+alias tmux="TERM=screen-256color tmux"
