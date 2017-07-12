@@ -20,9 +20,8 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'SirVer/ultisnips'
 Plugin 'flowtype/vim-flow'
-" Plugin 'lambdatoast/elm.vim'
+Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-rails'
 Plugin 'cocopon/iceberg.vim'
@@ -34,8 +33,6 @@ Plugin 'tmhedberg/matchit'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'mhinz/vim-startify'
-Plugin 'itchyny/lightline.vim'
-Plugin 'morhetz/gruvbox'
 Plugin 'w0rp/ale'
 Plugin 'junegunn/vim-emoji'
 Plugin 'inside/vim-textobj-jsxattr'
@@ -43,8 +40,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'benmills/vimux'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-rhubarb'
-Plugin 'sbdchd/neoformat'
 Plugin 'SirVer/ultisnips'
+Plugin 'sjl/badwolf'
+Plugin 'Ardakilic/vim-tomorrow-night-theme'
+Plugin 'tpope/tpope-vim-abolish'
 call vundle#end()            " required
 let test#strategy = "vimux"
 
@@ -69,10 +68,8 @@ filetype indent on
 set autoread
 set cmdheight=2
 
-let g:hybrid_use_iTerm_colors = 1
-" colorscheme PaperColor 
-colorscheme gruvbox 
-set bg=light
+let g:hybrid_use_iTerm_colors = 1 
+color seoul256
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -107,7 +104,7 @@ set completeopt-=preview
 set completeopt+=longest
 
 set omnifunc=emoji#complete
-set clipboard=unnamed
+" set clipboard+=unnamed
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 "all faith vim-go
@@ -167,14 +164,17 @@ autocmd FileType gitcommit setlocal spell
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_sign_column_always = 1
-" let g:lightline = {
-"       \ 'colorscheme': 'iceberg',
-"       \ }
-"
+
 set tags=./git/tags
 noremap <silent><Leader>ag :Ag <C-R><C-W><CR>
-autocmd FileType javascript set formatprg=prettier\ --stdin\ --single-quote\ --trailing-comma\ all\ --bracket-spacing\ false
+autocmd FileType javascript set formatprg=yarn\ run\ prettier\ --stdin\
 let g:neoformat_try_formatprg = 1
 nnoremap <F5> "=strftime("%Y/%m/%d")<CR>P
 inoremap <F5> <C-R>=strftime("%Y/%m/%d")<CR>
 set splitright
+
+let g:ale_fixers = {
+\ 'javascript': ['prettier']
+\}
+let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-bracket-spacing'
+let g:ale_fix_on_save = 1

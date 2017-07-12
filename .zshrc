@@ -1,6 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-# export ZSH_CUSTOM=$HOME/.zshcustom
-ZSH_THEME="nicoulaj"
+ZSH_THEME="muse"
 DISABLE_AUTO_TITLE="true"
 plugins=(git fasd vim)
 source $ZSH/oh-my-zsh.sh
