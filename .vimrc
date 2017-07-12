@@ -130,10 +130,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 """ Tern for js
 let g:tern_map_keys=1
 
-" set foldmethod=indent
-" set foldnestmax=5
-" set foldlevel=1
-" let g:ag_prg="ag --ignore /node_modules/ --ignore \\\*.min.js --vimgrep"
 set autowrite
 
 "" Disable AutoComplPop.
@@ -163,12 +159,12 @@ runtime macros/matchit.vim
 autocmd FileType gitcommit setlocal spell
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_sign_column_always = 1
+
 
 set tags=./git/tags
 noremap <silent><Leader>ag :Ag <C-R><C-W><CR>
-autocmd FileType javascript set formatprg=yarn\ run\ prettier\ --stdin\
-let g:neoformat_try_formatprg = 1
+noremap <silent><Leader>fg :Files <CR><C-W><CR>
+
 nnoremap <F5> "=strftime("%Y/%m/%d")<CR>P
 inoremap <F5> <C-R>=strftime("%Y/%m/%d")<CR>
 set splitright
@@ -178,3 +174,10 @@ let g:ale_fixers = {
 \}
 let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-bracket-spacing'
 let g:ale_fix_on_save = 1
+
+" fzf settings
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
