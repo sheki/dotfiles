@@ -69,7 +69,7 @@ set autoread
 set cmdheight=2
 
 let g:hybrid_use_iTerm_colors = 1 
-color seoul256
+color base16-gruvbox-dark-hard
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"

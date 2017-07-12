@@ -77,8 +77,8 @@ PROMPT="$(random_emoji) $PROMPT"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PASSWORD_STORE_DIR="$HOME/Dropbox/spm"
 export PASSWORD_STORE_KEY="D8F115F8"
-# BASE16_SHELL=$HOME/.config/base16-shell/
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 
 ### RBENV JUNK
@@ -154,7 +154,6 @@ function clearit() {
 # }
 # add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 PLAN9=$HOME/plan9port
 PATH=$PATH:$PLAN9/bin
 
