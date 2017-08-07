@@ -44,6 +44,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'sjl/badwolf'
 Plugin 'Ardakilic/vim-tomorrow-night-theme'
 Plugin 'tpope/tpope-vim-abolish'
+Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fireplace'
 call vundle#end()            " required
 let test#strategy = "vimux"
 
@@ -69,6 +71,7 @@ set autoread
 set cmdheight=2
 
 let g:hybrid_use_iTerm_colors = 1 
+let base16colorspace=256 
 color base16-gruvbox-dark-hard
 
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -104,7 +107,7 @@ set completeopt-=preview
 set completeopt+=longest
 
 set omnifunc=emoji#complete
-" set clipboard+=unnamed
+set clipboard+=unnamed
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 "all faith vim-go
@@ -170,7 +173,8 @@ inoremap <F5> <C-R>=strftime("%Y/%m/%d")<CR>
 set splitright
 
 let g:ale_fixers = {
-\ 'javascript': ['prettier']
+\ 'javascript': ['prettier'],
+\ 'ruby': ['rubocop']
 \}
 let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-bracket-spacing'
 let g:ale_fix_on_save = 1
@@ -181,3 +185,10 @@ command! -bang -nargs=* Ag
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+let g:airline#extensions#ale#enabled = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)

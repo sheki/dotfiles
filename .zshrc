@@ -121,17 +121,6 @@ fe() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
-function clearit() {
-  # REM=$((lineno() % line()))
-  # DIV=$(($LINENO / $LINES))
-  # if [[ $DIV -gt 0 && $REM -lt 3 && $DIV ]]; then
-  #   clear
-  # fi
-  # echo $LINENO, $LINES
-}
-
-# add-zsh-hook preexec clearit
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # place this after nvm initialization!
 # autoload -U add-zsh-hook
@@ -157,5 +146,40 @@ function clearit() {
 PLAN9=$HOME/plan9port
 PATH=$PATH:$PLAN9/bin
 
+fbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+    branch=$(echo "$branches" | fzf +m) &&
+    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+fadd() {
+  local branches branch
+  branches=$(git ls-files|sort|uniq) &&
+    branch=$(echo "$branches" | fzf +m) &&
+    echo "$branch" | awk '{print $1}' | sed "s/.* //"
+}
+
+
 export PATH="$HOME/.yarn/bin:$PATH"
 alias tmux="TERM=screen-256color tmux"
+HISTFILE=~/.zsh_history
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+
+fzf-git-ls-files() {
+  if [[ -f '.git/config' ]]; then
+
+    cmd=$(git diff --name-only --diff-filter=U)
+    foo="$(echo $cmd| fzf +s +m -n2..,..)"
+  else
+    echo "Not a git repo\n"
+  fi
+
+  zle -U $foo
+}
+
+zle     -N   fzf-git-ls-files
+bindkey '^o' fzf-git-ls-files
+ssh-add -A &> /dev/null
