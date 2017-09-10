@@ -7,7 +7,6 @@ call vundle#begin()
 " "call vundle#begin('~/some/path/here')
 "
 " " let Vundle manage Vundle, required
-" Plugin 'Yggdroot/indentLine'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-fugitive'
@@ -16,16 +15,12 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'gavocanov/vim-js-indent'
-Plugin 'junegunn/seoul256.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'flowtype/vim-flow'
 Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-rails'
-Plugin 'cocopon/iceberg.vim'
-Plugin 'godlygeek/tabular'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'vim-ruby/vim-ruby'
@@ -34,18 +29,16 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'mhinz/vim-startify'
 Plugin 'w0rp/ale'
-Plugin 'junegunn/vim-emoji'
 Plugin 'inside/vim-textobj-jsxattr'
 Plugin 'majutsushi/tagbar'
 Plugin 'benmills/vimux'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'SirVer/ultisnips'
-Plugin 'sjl/badwolf'
-Plugin 'Ardakilic/vim-tomorrow-night-theme'
-Plugin 'tpope/tpope-vim-abolish'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fireplace'
+Plugin 'vim-scripts/dbext.vim'
+Plugin 'mtth/scratch.vim'
 call vundle#end()            " required
 let test#strategy = "vimux"
 
@@ -89,7 +82,7 @@ set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 set laststatus=2
 
-syntax on
+" syntax on
 "GO
 let g:go_fmt_command="goimports"
 let g:go_highlight_operators=1
@@ -106,7 +99,6 @@ nmap <leader>f :Files<CR>
 set completeopt-=preview
 set completeopt+=longest
 
-set omnifunc=emoji#complete
 set clipboard+=unnamed
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -173,9 +165,9 @@ inoremap <F5> <C-R>=strftime("%Y/%m/%d")<CR>
 set splitright
 
 let g:ale_fixers = {
-\ 'javascript': ['prettier'],
-\ 'ruby': ['rubocop']
+\ 'javascript': ['prettier']
 \}
+" \ 'ruby': ['rubocop']
 let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-bracket-spacing'
 let g:ale_fix_on_save = 1
 
@@ -192,3 +184,6 @@ endif
 let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:dbext_default_profile_flexport_development='type=pgsql:host=localhost:user=postgres:dsnname=flexport_development:dbname=flexport_development'
+let g:dbext_default_profile='flexport_development'

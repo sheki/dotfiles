@@ -41,6 +41,7 @@
   ch = ! bash -c 'git checkout $(git ls-files -m | fzf -m)'
 [merge]
 	tool = vimdiff
+	conflictstyle = diff3
 [branch]
 	autosetuprebase = always
 [difftool]

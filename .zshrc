@@ -171,7 +171,8 @@ setopt hist_ignore_all_dups
 fzf-git-ls-files() {
   if [[ -f '.git/config' ]]; then
 
-    cmd=$(git diff --name-only --diff-filter=U)
+    
+    cmd=$(git status --porcelain |rev|cut -d" " -f1 |rev)
     foo="$(echo $cmd| fzf +s +m -n2..,..)"
   else
     echo "Not a git repo\n"
