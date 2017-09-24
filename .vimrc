@@ -186,5 +186,7 @@ let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-let g:dbext_default_profile_flexport_development='type=pgsql:host=localhost:user=postgres:dsnname=flexport_development:dbname=flexport_development'
+let g:dbext_default_profile_flexport_development="type=pgsql:host=" . $POSTGRES_DATABASE_HOST . ":port=" . $POSTGRES_DATABASE_PORT . ":dbname=flexport_development"
 let g:dbext_default_profile='flexport_development'
+autocmd BufEnter *.md colorscheme acme
+autocmd BufEnter *.md startinsert

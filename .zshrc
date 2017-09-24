@@ -184,3 +184,5 @@ fzf-git-ls-files() {
 zle     -N   fzf-git-ls-files
 bindkey '^o' fzf-git-ls-files
 ssh-add -A &> /dev/null
+PG_FILE=$HOME/github/flexport/.env.local
+[[ -f $PG_FILE ]] && source $PG_FILE
