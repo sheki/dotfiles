@@ -40,6 +40,8 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'vim-scripts/dbext.vim'
 Plugin 'mtth/scratch.vim'
 Plugin 'duckwork/vim-acme'
+Plugin 'venantius/vim-cljfmt'
+Plugin 'tpope/vim-classpath'
 call vundle#end()            " required
 let test#strategy = "vimux"
 
